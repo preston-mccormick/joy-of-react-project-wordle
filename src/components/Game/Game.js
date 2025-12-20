@@ -15,15 +15,13 @@ function Game() {
 
   function handleGuess(value) {
     const guess = {
-      id: crypto.randomUUID
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
-      value,
+      id: crypto.randomUUID(),
+      value
     };
     setGuesses((prev) => [...prev, guess]);
   }
 
-  return <>
+  return <>  
     <GuessGrid guesses={guesses} />
     <Guess onSubmit={handleGuess} />
     <GuessList guesses={guesses} />
