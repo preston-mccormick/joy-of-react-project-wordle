@@ -61,14 +61,14 @@ header .side {
 
 h1 {
   flex: 1;
-  font-size: 2rem;
+  font-size: 2.5rem;
   line-height: var(--header-height);
   text-align: center;
 }
 
 @media (max-width: 25rem) {
   h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -84,10 +84,14 @@ h1 {
 }
 
 .guess-results {
-  flex: 1;
+  flex: 0 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+  /* Fade content toward the bottom */
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);  
 }
 
 .guess {
@@ -105,23 +109,6 @@ h1 {
   border: 2px solid var(--color-gray-700);
   border-radius: var(--radius);
   font-size: 2rem;
-}
-
-/*
-  Round the corners for the 4 cells at the very corners of
-  the game board
-*/
-.guess:first-of-type .cell:first-of-type {
-  --radius: 4px 0px 0px 0px;
-}
-.guess:first-of-type .cell:last-of-type {
-  --radius: 0px 4px 0px 0px;
-}
-.guess:last-of-type .cell:last-of-type {
-  --radius: 0px 0px 4px 0px;
-}
-.guess:last-of-type .cell:first-of-type {
-  --radius: 0px 0px 0px 4px;
 }
 
 .cell.correct {
@@ -148,14 +135,13 @@ h1 {
 }
 
 .guess-input-wrapper label {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .guess-input-wrapper input {
   display: block;
   width: 100%;
   font-size: 2rem;
-  border: 2px solid var(--color-gray-300);
   border-radius: 4px;
   padding: 8px 16px;
   outline-offset: 4px;
