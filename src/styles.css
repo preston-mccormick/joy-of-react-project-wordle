@@ -86,14 +86,16 @@ h1 {
 .guess-results {
   flex: 0 1 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; /* newest guess appears at the top */
   justify-content: center;
   align-items: center;
   font-size: 2.4rem;
-  /* Fade content toward the bottom */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);  
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 10%,
+    rgba(0,0,0,0) 100%
+  );
 }
-
 .guess {
   display: flex;
   gap: 4px;
