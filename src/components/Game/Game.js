@@ -4,12 +4,8 @@ import { NUM_OF_GUESSES_ALLOWED, WORD_LENGTH } from '../../constants';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
-import GuessList from '../GuessList';
 import GuessGrid from '../GuessGrid';
-
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-console.info({ answer });
+import GameOver from '../GameOver';
 
 /**
  * Main game component managing game state and logic
@@ -17,6 +13,9 @@ console.info({ answer });
 function Game() {
   // Initialize guesses to empty
   const [guesses, setGuesses] = React.useState([]);
+  // Pick a random word - use state so it updates on reset
+  const [answer, setAnswer] = React.useState(sample(WORDS));
+  console.info({ answer });
 
   // Derive game state
   const lastGuess = guesses[guesses.length - 1];
@@ -28,19 +27,20 @@ function Game() {
     setGuesses(next);
   }
 
+  function handleReset() {
+    setGuesses([]);
+    setAnswer(sample(WORDS));
+  }
+
   return (
     <>
       <GuessGrid guesses={guesses} />
-      {isWinner && (
-        <div className="banner happy">Congratulations! You guessed it!</div>
-      )}
 
-      {isGameOver && !isWinner && (
-        <div className="banner sad">Sorry, the answer was {answer}.</div>
+      {isGameOver ? (
+        <GameOver isWinner={isWinner} answer={answer} onReset={handleReset} />
+      ) : (
+        <GuessInput onSubmit={handleGuess} />
       )}
-
-      {!isGameOver && <GuessInput onSubmit={handleGuess} />}
-      <GuessList guesses={guesses} />
     </>
   );
 }
