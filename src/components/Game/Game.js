@@ -5,7 +5,8 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
 import GuessGrid from '../GuessGrid';
-import GameOver from '../GameOver';
+import HappyBanner from '../HappyBanner';
+import SadBanner from '../SadBanner';
 import { checkGuess } from '../../game-helpers';
 
 /**
@@ -16,12 +17,12 @@ function Game() {
   const [guessResults, setGuessResults] = React.useState([]);
   const [answer, setAnswer] = React.useState(sample(WORDS));
 
-  console.info({ answer });
+  console.info(`The answer is: ${answer}`);
 
   // Derive game state
   const lastGuess = guesses[guesses.length - 1];
   const isWinner = lastGuess === answer;
-  const isGameOver = isWinner || guesses.length >= NUM_OF_GUESSES_ALLOWED;
+  const gameOver = isWinner || guesses.length >= NUM_OF_GUESSES_ALLOWED;
 
   function handleGuess(guess) {
     console.info({ guess });
@@ -33,7 +34,7 @@ function Game() {
     setGuessResults((prev) => [...prev, result]);
   }
 
-  function handleReset() {
+  function playAgain() {
     setGuesses([]);
     setGuessResults([]);
     setAnswer(sample(WORDS));
@@ -50,10 +51,12 @@ function Game() {
   return (
     <>
       <GuessGrid rows={rows} />
-      {!isGameOver ? (
-        <GuessInput onSubmit={handleGuess} />
-      ) : (
-        <GameOver isWinner={isWinner} answer={answer} onReset={handleReset} />
+      {!gameOver && <GuessInput onSubmit={handleGuess} />}
+      {gameOver && isWinner && (
+        <HappyBanner turns={guesses.length} playAgain={playAgain} />
+      )}
+      {gameOver && !isWinner && (
+        <SadBanner answer={answer} playAgain={playAgain} />
       )}
     </>
   );

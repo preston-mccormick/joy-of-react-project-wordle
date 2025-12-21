@@ -8,6 +8,11 @@ const WORD_LENGTH = 5;
  */
 function GuessInput({ onSubmit }) {
   const [guess, setGuess] = React.useState('');
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -26,6 +31,7 @@ function GuessInput({ onSubmit }) {
     <form onSubmit={handleSubmit} className="guess-input-wrapper">
       <label htmlFor="guess-input">Enter guess:</label>
       <input
+        ref={inputRef}
         id="guess-input"
         type="text"
         value={guess}
