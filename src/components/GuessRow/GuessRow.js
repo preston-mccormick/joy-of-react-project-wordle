@@ -1,26 +1,15 @@
 import React from 'react';
 import GuessCell from '../GuessCell';
-import { WORD_LENGTH } from '../../constants';
-import { range } from '../../utils';
 
 /**
  * @param {Object} props
- * @param {string|null} props.guess - The 5-letter guess (can be null or empty)
- * @param {string|null} props.answer - The correct answer (can be null)
+ * @param {{letter: string, status: string}[]} props.cells - Precomputed cell props for this row
  */
-function GuessRow({ guess, answer }) {
-  const guessLetters = guess ? Array.from(guess) : null;
-  const answerLetters = answer ? Array.from(answer) : null;
-
+function GuessRow({ cells }) {
   return (
     <p className="guess">
-      {range(WORD_LENGTH).map((letterIndex) => (
-        <GuessCell
-          key={letterIndex}
-          guess={guess}
-          answer={answer}
-          index={letterIndex}
-        />
+      {cells.map((cell, index) => (
+        <GuessCell key={index} {...cell} />
       ))}
     </p>
   );

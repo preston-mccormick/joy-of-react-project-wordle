@@ -1,19 +1,14 @@
 import React from 'react';
 
 /**
+ * Single cell in the guess grid.
  * @param {Object} props
- * @param {string[]} props.guessLetters - Array of guessed letters
- * @param {string[]} props.answerLetters - Array of answer letters
- * @param {number} props.index - The index of the letter in the word
+ * @param {string} props.letter - The letter to display
+ * @param {('correct'|'incorrect'|'misplaced'|'empty'|'absent')=} props.status - The evaluation status
  */
-function GuessCell({ guess, answer, index }) {
-  const guessLetters = guess ? Array.from(guess) : null;
-  const letter = guessLetters?.[index] ?? '';
-  const answerLetters = answer ? Array.from(answer) : null;
-  const isMatch = letter && answerLetters?.[index] === letter;
-  const isPresent = letter && answerLetters?.includes(letter);
-
-  return <span className="cell">{letter}</span>;
+function GuessCell({ letter, status }) {
+  const statusClass = status ? ` ${status}` : '';
+  return <span className={`cell${statusClass}`}>{letter}</span>;
 }
 
 export default GuessCell;
