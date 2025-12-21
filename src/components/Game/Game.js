@@ -51,7 +51,7 @@ function Game() {
   return (
     <>
       <GuessGrid rows={rows} />
-      {!gameOver && <GuessInput onSubmit={handleGuess} />}
+      <GuessInput onSubmit={handleGuess} disabled={gameOver} />
       {gameOver && isWinner && (
         <HappyBanner turns={guesses.length} playAgain={playAgain} />
       )}

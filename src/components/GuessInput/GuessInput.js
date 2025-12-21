@@ -5,17 +5,21 @@ const WORD_LENGTH = 5;
 /**
  * @param {Object} props
  * @param {Function} props.onSubmit - Callback when user submits a guess
+ * @param {boolean=} props.disabled - Whether input is disabled
  */
-function GuessInput({ onSubmit }) {
+function GuessInput({ onSubmit, disabled = false }) {
   const [guess, setGuess] = React.useState('');
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (!disabled) {
+      inputRef.current?.focus();
+    }
+  }, [disabled]);
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (disabled) return;
     const value = guess.trim();
     if (!value) return;
     if (onSubmit) {
@@ -44,6 +48,7 @@ function GuessInput({ onSubmit }) {
         pattern={`[A-Z]{${WORD_LENGTH}}`}
         title={`${WORD_LENGTH} capital letters (A–Z)`}
         autoComplete="off"
+        disabled={disabled}
       />
     </form>
   );

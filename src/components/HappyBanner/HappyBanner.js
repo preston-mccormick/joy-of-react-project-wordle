@@ -3,7 +3,7 @@ import React from 'react';
 function HappyBanner({ turns, playAgain }) {
   const guesses = turns === 1 ? 'guess' : 'guesses';
   return (
-    <div class="happy banner">
+    <div className="happy banner">
       <p>
         <strong>Congratulations!</strong> You got it in <strong>{turns}</strong>{' '}
         {guesses}.

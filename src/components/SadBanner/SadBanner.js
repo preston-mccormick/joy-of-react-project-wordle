@@ -2,7 +2,7 @@ import React from 'react';
 
 function SadBanner({ answer, playAgain }) {
   return (
-    <div class="sad banner">
+    <div className="sad banner">
       <p>
         Sorry, the correct answer is <strong>{answer}</strong>.
       </p>
