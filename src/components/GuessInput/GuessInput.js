@@ -1,6 +1,12 @@
 import React from 'react';
 
-function Guess({ onSubmit }) {
+const WORD_LENGTH = 5;
+
+/**
+ * @param {Object} props
+ * @param {Function} props.onSubmit - Callback when user submits a guess
+ */
+function GuessInput({ onSubmit }) {
   const [guess, setGuess] = React.useState('');
 
   function handleSubmit(event) {
@@ -14,11 +20,11 @@ function Guess({ onSubmit }) {
       console.info('guess:', value);
     }
     setGuess('');
-  }  
+  }
 
   return (
     <form onSubmit={handleSubmit} className="guess-input-wrapper">
-      <label htmlFor="guess-input">Enter your guess:</label>
+      <label htmlFor="guess-input">Enter guess:</label>
       <input
         id="guess-input"
         type="text"
@@ -28,13 +34,13 @@ function Guess({ onSubmit }) {
           const sanitized = raw.toUpperCase().replace(/[^A-Z]/g, '');
           setGuess(sanitized);
         }}
-        maxLength={5}
-        pattern="[A-Z]{5}"
-        title="5 capital letters (A–Z)"
+        maxLength={WORD_LENGTH}
+        pattern={`[A-Z]{${WORD_LENGTH}}`}
+        title={`${WORD_LENGTH} capital letters (A–Z)`}
         autoComplete="off"
       />
     </form>
   );
 }
 
-export default Guess;
+export default GuessInput;

@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Header component displaying the game title
+ */
 function Header() {
   return (
     <header>
