@@ -5,7 +5,7 @@ html {
   overflow-y: scroll;
 
   --game-spacing: 32px;
-  --header-height: 6rem;
+  --header-height: 4rem;
 
   --color-success: hsl(150deg 70% 30%);
   --color-warning: hsl(50deg 100% 30%);
@@ -76,20 +76,17 @@ h1 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: var(--game-spacing);
   padding: var(--game-spacing) 32px;
   align-self: center;
-  width: 100%;
-  min-width: 250px;
-  max-width: min(700px, 80vh, 100%);
+  min-width: 350px;
+  max-width: min(700px, 70vh, 90%);
 }
 
 .guess-results {
   flex: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .guess {
@@ -154,7 +151,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 6.75rem;
 }
 
 .guess-input-wrapper label {
@@ -250,7 +246,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: 16px;
   padding: 0 8px;
   width: 80%;
   margin-left: auto;
