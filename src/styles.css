@@ -118,6 +118,7 @@ h1 {
   display: grid;
   place-content: center;
   border-radius: var(--radius);
+  background-color: lightgoldenrodyellow;
 }
 
 /*
@@ -208,6 +209,68 @@ h1 {
   margin: -1px;
   padding: 0;
   border: 0;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 0 8px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.keyboard-row:nth-child(3) {
+  margin-left: calc(-6% + 3.6px);
+}
+
+.key {
+  width: calc(12% - 7.2px);
+  flex: 0 0 auto;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.125rem;
+  background: var(--color-gray-700);
+  color: var(--color-gray-100);
+  padding: 0 8px;
+}
+
+.key.correct {
+  background: var(--color-success);
+  color: white;
+}
+
+.key.misplaced {
+  background: var(--color-warning);
+  color: white;
+}
+
+.key.incorrect {
+  background: var(--color-gray-500);
+  color: white;
+}
+
+.key.unused {
+  background: var(--color-gray-700);
+  color: var(--color-gray-100);
 }
 
 /*

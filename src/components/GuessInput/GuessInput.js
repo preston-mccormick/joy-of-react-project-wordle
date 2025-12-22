@@ -17,6 +17,19 @@ function GuessInput({ onSubmit, disabled = false }) {
     }
   }, [disabled]);
 
+  React.useEffect(() => {
+    function handleWindowFocus() {
+      if (!disabled) {
+        inputRef.current?.focus();
+      }
+    }
+
+    window.addEventListener('focus', handleWindowFocus);
+    return () => {
+      window.removeEventListener('focus', handleWindowFocus);
+    };
+  }, [disabled]);
+
   function handleSubmit(event) {
     event.preventDefault();
     if (disabled) return;

@@ -7,15 +7,18 @@ import GuessInput from '../GuessInput';
 import GuessGrid from '../GuessGrid';
 import HappyBanner from '../HappyBanner';
 import SadBanner from '../SadBanner';
+import LetterStatus from '../LetterStatus';
 import { checkGuess } from '../../game-helpers';
 
 /**
  * Main game component managing game state and logic
  */
 function Game() {
+  // State
   const [guesses, setGuesses] = React.useState([]);
   const [guessResults, setGuessResults] = React.useState([]);
   const [answer, setAnswer] = React.useState(sample(WORDS));
+  const [letterStatus, setLetterStatus] = React.useState({});
 
   console.info(`The answer is: ${answer}`);
 
@@ -24,7 +27,7 @@ function Game() {
   const isWinner = lastGuess === answer;
   const gameOver = isWinner || guesses.length >= NUM_OF_GUESSES_ALLOWED;
 
-  function handleGuess(guess) {
+  function guess(guess) {
     console.info({ guess });
 
     const nextGuesses = [...guesses, guess];
@@ -32,12 +35,34 @@ function Game() {
 
     const result = checkGuess(guess, answer);
     setGuessResults((prev) => [...prev, result]);
+
+    const nextLetterStatus = updateLetterStatus(letterStatus, result);
+    setLetterStatus(nextLetterStatus);
+  }
+
+  function updateLetterStatus(letterStatus, result) {
+    const statusPriority = { correct: 3, misplaced: 2, incorrect: 1 };
+    const nextLetterStatus = { ...letterStatus };
+
+    result.forEach(({ letter, status }) => {
+      const currentStatus = nextLetterStatus[letter];
+      const currentPriority = statusPriority[currentStatus] || 0;
+      const newPriority = statusPriority[status];
+
+      // Only update if new status has higher priority
+      if (newPriority > currentPriority) {
+        nextLetterStatus[letter] = status;
+      }
+    });
+
+    return nextLetterStatus;
   }
 
   function playAgain() {
     setGuesses([]);
     setGuessResults([]);
     setAnswer(sample(WORDS));
+    setLetterStatus({});
   }
 
   // Grid State
@@ -51,7 +76,8 @@ function Game() {
   return (
     <>
       <GuessGrid rows={rows} />
-      <GuessInput onSubmit={handleGuess} disabled={gameOver} />
+      <LetterStatus letterStatus={letterStatus} disabled={gameOver} />
+      <GuessInput onSubmit={guess} disabled={gameOver} />
       {gameOver && isWinner && (
         <HappyBanner turns={guesses.length} playAgain={playAgain} />
       )}
