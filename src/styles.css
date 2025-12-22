@@ -117,8 +117,7 @@ h1 {
   font-size: 2rem;
   display: grid;
   place-content: center;
-  border-radius: var(--radius);
-  background-color: lightgoldenrodyellow;
+  background-color: rgba(250, 250, 210, 0.5);
 }
 
 /*
