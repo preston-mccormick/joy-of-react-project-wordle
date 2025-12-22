@@ -188,10 +188,46 @@ h1 {
   animation: slideUp 750ms cubic-bezier(0, 0.72, 0.24, 1.02);
   border-radius: 4px 4px 0px 0px;
   will-change: transform;
+  font-size: 1.5rem;
+}
+
+.play-again-button {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.play-again-button:focus {
+  outline: 2px solid white;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.play-again-button .key {
+  width: 40px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.play-again-button .key-spacer {
+  width: 12px;
 }
 
 .happy.banner {
-  background: var(--color-success);
+  background: var(--color-warning);
   color: white;
 }
 .sad.banner {
