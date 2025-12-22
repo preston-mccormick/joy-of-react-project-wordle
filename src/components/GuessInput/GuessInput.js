@@ -54,13 +54,15 @@ function GuessInput({ onSubmit, disabled = false }) {
         value={guess}
         onChange={(e) => {
           const raw = e.target.value;
+          // Capitalize and strip non-letters
           const sanitized = raw.toUpperCase().replace(/[^A-Z]/g, '');
           setGuess(sanitized);
         }}
+        required
         maxLength={WORD_LENGTH}
+        minLength={WORD_LENGTH}
         pattern={`[A-Z]{${WORD_LENGTH}}`}
-        title={`${WORD_LENGTH} capital letters (A–Z)`}
-        autoComplete="off"
+        title={`${WORD_LENGTH} letter word`}
         disabled={disabled}
       />
     </form>
