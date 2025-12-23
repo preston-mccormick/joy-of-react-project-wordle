@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * Header component displaying the game title
@@ -6,7 +6,7 @@ import React from 'react';
 function Header() {
   return (
     <header>
-      <h1>Word Skwers</h1>
+      <h1>Werd Skwers</h1>
     </header>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "name": "word-sqwers",
+  "name": "werd-sqwers",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://preston-mccormick.github.io/joy-of-react-project-wordle/",
@@ -25,7 +25,15 @@
     "predev": "rimraf .parcel-cache dist",
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html --public-url /joy-of-react-project-wordle/",
-    "new-component": "new-component"
+    "new-component": "new-component",
+    "lint:css": "stylelint src/**/*.css",
+    "lint:css:fix": "stylelint src/**/*.css --fix",
+    "format": "prettier --write src/**/*.{js,css}"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-order": "^7.0.0"
+  }
 }
