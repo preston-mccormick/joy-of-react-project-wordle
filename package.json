@@ -2,14 +2,9 @@
   "name": "werd-sqwers",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://preston-mccormick.github.io/joy-of-react-project-wordle/",
-  "author": "Preston McCormick <prestonmccormick@gmail.com>",
-  "contributors": [
-    {
-      "name": "Josh Comeau",
-      "email": "me@joshwcomeau.com"
-    }
-  ],
+  "homepage": "https://preston-mccormick.github.io/joy-of-react-project-wordle/",  
+  "author": "Josh Comeau <me@joshwcomeau.com>",
+  "contributors": ["Preston McCormick"],
   "dependencies": {
     "eslint": "8.49.0",
     "eslint-config-react-app": "7.0.1",
